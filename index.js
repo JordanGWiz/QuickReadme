@@ -76,9 +76,9 @@ function writeToFile(fileName, data) {
 
 // Initialize app
 function init() {
-  inquirer.createPromptModule(questions).then((responses) => {
+  inquirer.prompt(questions).then((responses) => {
     console.log("Created README.md file...");
-    writeToFile("./dist/README.md", generateMarkdown({ ...responses }));
+    writeToFile("./QuickReadme/README.md", generateMarkdown({ ...responses }));
   });
 }
 
