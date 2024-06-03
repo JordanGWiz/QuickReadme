@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
 
@@ -68,10 +69,18 @@ const questions = [
 ];
 
 // Write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+  const filePath = path.resolve(process.cwd(), fileName);
+  return fs.writeFileSync(filePath, data);
+}
 
 // Initialize app
-function init() {}
+function init() {
+  inquirer.createPromptModule(questions).then((responses) => {
+    console.log("Created README.md file...");
+    writeToFile("./dist/README.md", generateMarkdown({ ...responses }));
+  });
+}
 
 // Function call to initialize app
 init();
