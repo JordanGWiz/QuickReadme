@@ -70,7 +70,7 @@ const questions = [
 
 // Write README file
 function writeToFile(fileName, data) {
-  const filePath = path.resolve(process.cwd(), fileName);
+  const filePath = path.resolve(__dirname, fileName);
   return fs.writeFileSync(filePath, data);
 }
 
@@ -78,7 +78,8 @@ function writeToFile(fileName, data) {
 function init() {
   inquirer.prompt(questions).then((responses) => {
     console.log("Created README.md file...");
-    writeToFile("./QuickReadme/README.md", generateMarkdown({ ...responses }));
+    const readmeContent = generateMarkdown(responses);
+    writeToFile("README.md", readmeContent);
   });
 }
 
