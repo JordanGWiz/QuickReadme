@@ -5,7 +5,12 @@ function renderLicenseBadge(license) {
   return "";
 }
 
-function renderLicenseLink(license) {}
+function renderLicenseLink(license) {
+  if (!license || license === "No license") {
+    return "\n* [License](#license)\n";
+  }
+  return "";
+}
 
 function renderLicenseSection(license) {}
 
@@ -24,6 +29,8 @@ ${data.projectDescription}
 * [Tests](#tests)
 * [License](#license)
 * [Questions](#questions)
+
+${renderLicenseLink(data.license)}
 
 ## Installation
 ${data.installation}
